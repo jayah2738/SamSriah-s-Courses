@@ -13,4 +13,4 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-// Set-ExecutionPolicy -scope Process -ExecutionPolicy Bypass
+// Set-ExecutionPolicy -scope Process -ExecutionPolicy Bypass  
