@@ -2,29 +2,8 @@
 import React, { useState, useMemo } from "react";
 import { FiSearch, FiMenu, FiUsers, FiBook, FiVideo, FiFileText, FiSettings, FiLogOut, FiGrid, FiPlusCircle, FiEdit3, FiTrash2 } from "react-icons/fi";
 import { debounce } from "lodash";
+import courseMaterials from './Admin'
 
-const courseMaterials = [
-  {
-    id: 1,
-    title: "Mathematics Chapter 1",
-    type: "video",
-    grade: "Grade 10",
-    subject: "Mathematics",
-    uploadDate: "2024-01-15",
-    fileUrl: "https://example.com/math-chapter1.mp4",
-    fileSize: "250MB"
-  },
-  {
-    id: 2,
-    title: "Physics Notes",
-    type: "pdf",
-    grade: "Grade 11",
-    subject: "Physics",
-    uploadDate: "2024-01-14",
-    fileUrl: "https://example.com/physics-notes.pdf",
-    fileSize: "15MB"
-  }
-];
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -51,6 +30,10 @@ const AdminDashboard = () => {
       );
     }
 
+    if (selectedSection !== "all") {
+      items = items.filter((item) => item.section === selectedSection);
+    }
+
     if (selectedGrade !== "all") {
       items = items.filter((item) => item.grade === selectedGrade);
     }
@@ -64,7 +47,7 @@ const AdminDashboard = () => {
     }
 
     return items;
-  }, [searchQuery, selectedGrade, selectedSubject, fileType]);
+  }, [searchQuery, selectedSection,selectedGrade, selectedSubject, fileType]);
 
   const dashboardStats = {
     totalStudents: 1250,
@@ -124,37 +107,37 @@ const AdminDashboard = () => {
                 className="px-4 py-2 border rounded-lg"
                 onChange={(e) => setSelectedSection(e.target.value)}
               >
-                <option value="All ">All Sections</option>
-                <option value="Preschool ">Preschool</option>
-                <option value="Primary ">Primary</option>
-                <option value="Middle ">Middle</option>
-                <option value="High ">High</option>
+                <option value="all">All Sections</option>
+                <option value="Preschool">Preschool</option>
+                <option value="primary">Primary</option>
+                <option value="middle">Middle</option>
+                <option value="high">High</option>
               </select>
               <select 
                 className="px-4 py-2 border rounded-lg"
                 onChange={(e) => setSelectedGrade(e.target.value)}
               >
-                <option value="All">All Grades</option>
+                <option value="all">All Grades</option>
                 <option value="TPS">TPS</option>
                 <option value="PS">PS</option>
                 <option value="MS">MS</option>
                 <option value="GS">GS</option>
-                <option value="Grade_1">Grade 1</option>
-                <option value="Grade_2">Grade 2</option>
-                <option value="Grade_3">Grade 3</option>
-                <option value="Grade_4">Grade 4</option>
-                <option value="Grade_5">Grade 5</option>
-                <option value="Grade_6">Grade 6</option>
-                <option value="Grade_7">Grade 7</option>
-                <option value="Grade_8">Grade 8</option>
-                <option value="Grade_9">Grade 9</option>
-                <option value="Grade_10">Grade 10</option>
-                <option value="Grade_11_L">Grade 11 L</option>
-                <option value="Grade_11_OSE">Grade 11 OSE</option>
-                <option value="Grade_11_S">Grade 11 S</option>
-                <option value="Grade_12_L">Grade 12 L</option>
-                <option value="Grade_12_OSE">Grade 12 OSE</option>
-                <option value="Grade_12_S">Grade 12 S</option>
+                <option value="Grade 1">Grade 1</option>
+                <option value="Grade 2">Grade 2</option>
+                <option value="Grade 3">Grade 3</option>
+                <option value="Grade 4">Grade 4</option>
+                <option value="Grade 5">Grade 5</option>
+                <option value="Grade 6">Grade 6</option>
+                <option value="Grade 7">Grade 7</option>
+                <option value="Grade 8">Grade 8</option>
+                <option value="Grade 9">Grade 9</option>
+                <option value="Grade 10">Grade 10</option>
+                <option value="Grade 11 L">Grade 11 L</option>
+                <option value="Grade 11 OSE">Grade 11 OSE</option>
+                <option value="Grade 11 S">Grade 11 S</option>
+                <option value="Grade 12 L">Grade 12 L</option>
+                <option value="Grade 12 OSE">Grade 12 OSE</option>
+                <option value="Grade 12 S">Grade 12 S</option>
               </select>
               <select 
                 className="px-4 py-2 border rounded-lg"
@@ -188,18 +171,19 @@ const AdminDashboard = () => {
               </button>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredItems.map((item) => (
-                <div key={item.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-                  <div className="p-4">
+              {filteredItems.map((item,index) => (
+                <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
+                  <div className="p-4" id={item.id.toString()} >
                     <div className="flex items-center gap-2 mb-2">
                       {item.type === "video" ? <FiVideo className="text-amber-500" /> : <FiFileText className="text-red-500" />}
                       <h3 className="text-lg font-bold text-gray-800">{item.title}</h3>
                     </div>
+                    <p className="text-sm text-gray-600">{"Section"} - {item.section}</p>
                     <p className="text-sm text-gray-600">{item.grade} - {item.subject}</p>
                     <p className="text-sm text-gray-500">Upload Date: {item.uploadDate}</p>
                     <p className="text-sm text-gray-500">File Size: {item.fileSize}</p>
                     <div className="mt-4 flex gap-2">
-                      <button className="flex-1 py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center justify-center gap-2">
+                      <button className="flex-1 py-2 px-4 bg-green-500 text-white rounded-lg hover:bg-green-600 flex items-center justify-center gap-2">
                         <FiEdit3 /> Edit
                       </button>
                       <button className="flex-1 py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-600 flex items-center justify-center gap-2">
