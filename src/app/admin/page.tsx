@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import { FiSearch, FiMenu, FiUsers, FiBook, FiVideo, FiFileText, FiSettings, FiLogOut, FiGrid, FiPlusCircle, FiEdit3, FiTrash2 } from "react-icons/fi";
 import { debounce } from "lodash";
 
@@ -30,12 +30,13 @@ const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedSection, setSelectedSection] = useState("all");
   const [selectedGrade, setSelectedGrade] = useState("all");
   const [selectedSubject, setSelectedSubject] = useState("all");
   const [fileType, setFileType] = useState("all");
 
-  const debouncedSearch = useCallback(
-    debounce((query) => setSearchQuery(query), 300),
+  const debouncedSearch = useMemo(() => 
+    debounce((query: string) => setSearchQuery(query), 300), 
     []
   );
 
@@ -119,14 +120,41 @@ const AdminDashboard = () => {
         return (
           <div>
             <div className="mb-6 flex flex-wrap gap-4">
+            <select 
+                className="px-4 py-2 border rounded-lg"
+                onChange={(e) => setSelectedSection(e.target.value)}
+              >
+                <option value="All ">All Sections</option>
+                <option value="Preschool ">Preschool</option>
+                <option value="Primary ">Primary</option>
+                <option value="Middle ">Middle</option>
+                <option value="High ">High</option>
+              </select>
               <select 
                 className="px-4 py-2 border rounded-lg"
                 onChange={(e) => setSelectedGrade(e.target.value)}
               >
-                <option value="all">All Grades</option>
-                <option value="Grade 10">Grade 10</option>
-                <option value="Grade 11">Grade 11</option>
-                <option value="Grade 12">Grade 12</option>
+                <option value="All">All Grades</option>
+                <option value="TPS">TPS</option>
+                <option value="PS">PS</option>
+                <option value="MS">MS</option>
+                <option value="GS">GS</option>
+                <option value="Grade_1">Grade 1</option>
+                <option value="Grade_2">Grade 2</option>
+                <option value="Grade_3">Grade 3</option>
+                <option value="Grade_4">Grade 4</option>
+                <option value="Grade_5">Grade 5</option>
+                <option value="Grade_6">Grade 6</option>
+                <option value="Grade_7">Grade 7</option>
+                <option value="Grade_8">Grade 8</option>
+                <option value="Grade_9">Grade 9</option>
+                <option value="Grade_10">Grade 10</option>
+                <option value="Grade_11_L">Grade 11 L</option>
+                <option value="Grade_11_OSE">Grade 11 OSE</option>
+                <option value="Grade_11_S">Grade 11 S</option>
+                <option value="Grade_12_L">Grade 12 L</option>
+                <option value="Grade_12_OSE">Grade 12 OSE</option>
+                <option value="Grade_12_S">Grade 12 S</option>
               </select>
               <select 
                 className="px-4 py-2 border rounded-lg"
@@ -135,7 +163,17 @@ const AdminDashboard = () => {
                 <option value="all">All Subjects</option>
                 <option value="Mathematics">Mathematics</option>
                 <option value="Physics">Physics</option>
-                <option value="Chemistry">Chemistry</option>
+                <option value="Chemistry ">Chemistry</option>
+                <option value="Malagasy">Malagasy</option>
+                <option value="English">English</option>
+                <option value="French">French</option>
+                <option value="History">History</option>
+                <option value="Geography">Geography</option>
+                <option value="Science">Science</option>
+                <option value="EAC">EAC</option>
+                <option value="SES">SES</option>
+                <option value="Informatics">Informatics</option>
+                <option value="Sports">Sports</option>
               </select>
               <select 
                 className="px-4 py-2 border rounded-lg"
@@ -145,7 +183,7 @@ const AdminDashboard = () => {
                 <option value="video">Videos</option>
                 <option value="pdf">PDFs</option>
               </select>
-              <button className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 flex items-center gap-2">
+              <button className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 flex items-center gap-2">
                 <FiPlusCircle /> Upload New Material
               </button>
             </div>
@@ -154,7 +192,7 @@ const AdminDashboard = () => {
                 <div key={item.id} className="bg-white rounded-lg shadow-md overflow-hidden">
                   <div className="p-4">
                     <div className="flex items-center gap-2 mb-2">
-                      {item.type === "video" ? <FiVideo className="text-blue-500" /> : <FiFileText className="text-red-500" />}
+                      {item.type === "video" ? <FiVideo className="text-amber-500" /> : <FiFileText className="text-red-500" />}
                       <h3 className="text-lg font-bold text-gray-800">{item.title}</h3>
                     </div>
                     <p className="text-sm text-gray-600">{item.grade} - {item.subject}</p>
