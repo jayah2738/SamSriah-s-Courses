@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import Header from "@/app/users/header";
 import Subjectlist from "@/app/users/subjectlist";

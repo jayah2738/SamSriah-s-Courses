@@ -3,7 +3,7 @@ const  SixExoData = [
     id:'1',
     subject: 'English',
     pdflink:'/users/middleschool/six/exercise/english/pdf',
-    videolink:'/',
+    videolink:'/users/middleschool/six/exercise/english/video',
     bglink:'/images/users/sublist.png'
   },
   {

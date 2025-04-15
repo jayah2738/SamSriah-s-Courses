@@ -60,14 +60,15 @@ const Video = () => {
         </motion.div>
       </div>
 
-      <ModalVideo
-        channel="youtube"
+      {/* <ModalVideo
+        channel="cuddlytube"
         autoplay={true}
         start={true}
         isOpen={isOpen}
-        videoId="1qRfqboYWNo"
+        videoId="7qFnF5dv7tVaChdfWffyHV"
+        controls="0"
         onClose={() => setOpen(false)}
-      />
+      /> */}
 
       <motion.div
         variants={fadeIn("down", 0.2)}

@@ -1,5 +1,5 @@
 {
-  "name": "startup-nextjs-template",
+  "name": "samsriah-school-courses",
   "version": "2.1.0",
   "private": true,
   "scripts": {
@@ -10,11 +10,15 @@
   },
   "dependencies": {
     "@pdftron/webviewer": "^11.4.0",
+    "axios": "^1.8.4",
+    "cors": "^2.8.5",
     "eslint": "^8.56.0",
     "eslint-config-next": "15.1.6",
     "express": "^5.1.0",
     "framer-motion": "^12.6.3",
+    "lodash": "^4.17.21",
     "mongodb": "^6.15.0",
+    "multer": "^1.4.5-lts.2",
     "next": "^15.3.0",
     "next-auth": "^4.24.11",
     "next-themes": "^0.2.1",
@@ -28,10 +32,24 @@
     "@types/node": "^20.8.9",
     "@types/react": "19.0.8",
     "autoprefixer": "^10.4.17",
+    "nodemon": "^3.1.9",
     "postcss": "^8.4.35",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3"
-  }
+  },
+  "description": "<<<<<<< HEAD",
+  "main": "next.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jayah2738/SamSriah-s-Courses.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jayah2738/SamSriah-s-Courses/issues"
+  },
+  "homepage": "https://github.com/jayah2738/SamSriah-s-Courses#readme"
 }
