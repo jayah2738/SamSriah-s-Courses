@@ -4,9 +4,9 @@ import axios from "axios";
 
 const VideoUploadAndGallery = () => {
   type VideoType = {
-    filename: string;
+    // filename: string;
     url: string;
-    title: string;
+    // title: string;
   };
   const [videoFile, setVideoFile] = useState(null);
   const [videos, setVideos] = useState<VideoType[]>([]);
@@ -16,14 +16,14 @@ const VideoUploadAndGallery = () => {
 
   const handleUpload = async (e) => {
     e.preventDefault();
-    if (!videos || !title) {
-      alert("Please select a video and enter a title.");
+    if (!videos) {
+      alert("Please select a video ");
       return;
     }
 
     const formData = new FormData();
     formData.append("video", videoFile);
-    formData.append("title", title);
+    // formData.append("title", title);
 
 
     await axios.post("http://localhost:5000/upload", formData, {
@@ -40,7 +40,6 @@ const VideoUploadAndGallery = () => {
 
     alert("Video uploaded successfully!");
     setVideos(null);
-    setTitle("");
   };
   return (
     <div className="mx-auto max-w-3xl p-4">
@@ -54,13 +53,13 @@ const VideoUploadAndGallery = () => {
           onChange={(e) => setVideoFile(e.target.files[0])}
           className="mb-2 rounded-full"
         />
-        <input
+        {/* <input
         type="text"
         placeholder="Enter video title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         className="border p-2 rounded mb-2 block w-full"
-      />
+      /> */}
         <button
           type="submit"
           className="rounded-full bg-amber-500 px-4 py-2 text-white"
